@@ -22,7 +22,7 @@ class MovieView(APIView, PageNumberPagination):
         return Response(serializer.data, 201)
 
     def get(self, req: Request):
-        movies = Movie.objects.all()
+        movies = Movie.objects.order_by("id")
 
         page = self.paginate_queryset(movies, req)
 

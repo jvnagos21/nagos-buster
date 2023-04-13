@@ -36,6 +36,16 @@ class UserSerializer(serializers.Serializer):
 
         return User.objects.create_user(**validated_data)
 
+    def update(self, instance: User, validated_data: dict):
+        if validated_data["password"]:
+            validated_data["password"] = make_password(validated_data["password"])
+
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+
+        instance.save()
+        return instance
+
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=150, write_only=True)
