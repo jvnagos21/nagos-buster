@@ -1,4 +1,4 @@
-# M5 - Kenzie Buster
+# Nagos - Buster
 
 ## Instalação dos pacotes de teste
 
